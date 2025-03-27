@@ -172,3 +172,4 @@ C:\Users\MirahO\Downloads\SET\S4\APIEngineering-306\Project\RentEasy\obj\Debug\n
 C:\Users\MirahO\Downloads\SET\S4\APIEngineering-306\Project\RentEasy\obj\Debug\net8.0\ref\RentEasy.dll
 C:\Users\MirahO\Downloads\SET\S4\APIEngineering-306\Project\RentEasy\bin\Debug\net8.0\DotNetEnv.dll
 C:\Users\MirahO\Downloads\SET\S4\APIEngineering-306\Project\RentEasy\bin\Debug\net8.0\Sprache.dll
+C:\Users\MirahO\Downloads\SET\S4\APIEngineering-306\Project\RentEasy\obj\Debug\net8.0\RentEasy.sourcelink.json
