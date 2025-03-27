@@ -6,24 +6,27 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+DotNetEnv.Env.Load();
+
 builder.Services.AddDbContext<RentEasyContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("Connection2RentEasyDB");
 
-    // Replace placeholders with environment variables
+    // Fetch environment variables safely
+    var dataSource = Environment.GetEnvironmentVariable("MYDATASOURCE") ?? "default_datasource";
+    var database = Environment.GetEnvironmentVariable("MYDATABASE") ?? "default_database";
+    var userId = Environment.GetEnvironmentVariable("MYUSERID") ?? "default_user";
+    var password = Environment.GetEnvironmentVariable("MYPASSWORD") ?? "default_password";
+
+    // Replace placeholders with actual values
     connectionString = connectionString
-        .Replace("MYDATASOURCE", Environment.GetEnvironmentVariable("MYDATASOURCE"))
-        .Replace("MYDATABASE", Environment.GetEnvironmentVariable("MYDATABASE"))
-        .Replace("MYUSERID", Environment.GetEnvironmentVariable("MYUSERID"))
-        .Replace("MYPASSWORD", Environment.GetEnvironmentVariable("MYPASSWORD"));
+        .Replace("MYDATASOURCE", dataSource)
+        .Replace("MYDATABASE", database)
+        .Replace("MYUSERID", userId)
+        .Replace("MYPASSWORD", password);
 
-    options.UseSqlServer(connectionString);
-});
+    Console.WriteLine($"[DEBUG] Connection String: {connectionString}"); // Debugging
 
-DotNetEnv.Env.Load(); 
-builder.Services.AddDbContext<RentEasyContext>(options =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("Connection2RentEasyDB");
     options.UseSqlServer(connectionString);
 });
 

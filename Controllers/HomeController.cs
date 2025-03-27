@@ -7,12 +7,12 @@ namespace RentEasy.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly RentEasyContext _dbContext;
+        
+        private readonly RentEasyContext _reDbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(RentEasyContext reDbContext)
         {
-            _logger = logger;
+            _reDbContext = reDbContext;
         }
 
         public IActionResult Index()

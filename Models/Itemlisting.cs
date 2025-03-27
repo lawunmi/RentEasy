@@ -5,7 +5,7 @@ namespace RentEasy.Models
     public class Itemlisting
     {
         [Key]
-        public int ItemId { get; set; }
+        public String ItemId { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
         public int OwnerId { get; set; }

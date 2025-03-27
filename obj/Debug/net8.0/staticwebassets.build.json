@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sszXJZgnUvUacU3Y00bwxv2kPdWjWJx1pX8qYCoQv7Y=",
+  "Hash": "g442LwNcUSI+cTYGJYO2lWdHotkvi2ZcnK/l8fzgOig=",
   "Source": "RentEasy",
   "BasePath": "_content/RentEasy",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2vwj428w01",
-      "Integrity": "HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=",
+      "Fingerprint": "8ff99j0b9p",
+      "Integrity": "rLTOvmLtzdqhnYgbzgfSQwYrekJ1MTnLk4vYW+8lzF4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1363,7 +1363,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.2vwj428w01.css",
+      "Route": "css/site.8ff99j0b9p.css",
       "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1373,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1268"
+          "Value": "1288"
         },
         {
           "Name": "Content-Type",
@@ -1381,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=\""
+          "Value": "\"rLTOvmLtzdqhnYgbzgfSQwYrekJ1MTnLk4vYW+8lzF4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 05:44:32 GMT"
+          "Value": "Thu, 27 Mar 2025 17:30:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1395,7 +1395,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2vwj428w01"
+          "Value": "8ff99j0b9p"
         },
         {
           "Name": "label",
@@ -1403,7 +1403,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk="
+          "Value": "sha256-rLTOvmLtzdqhnYgbzgfSQwYrekJ1MTnLk4vYW+8lzF4="
         }
       ]
     },
@@ -1418,7 +1418,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1268"
+          "Value": "1288"
         },
         {
           "Name": "Content-Type",
@@ -1426,11 +1426,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=\""
+          "Value": "\"rLTOvmLtzdqhnYgbzgfSQwYrekJ1MTnLk4vYW+8lzF4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 05:44:32 GMT"
+          "Value": "Thu, 27 Mar 2025 17:30:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1440,7 +1440,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk="
+          "Value": "sha256-rLTOvmLtzdqhnYgbzgfSQwYrekJ1MTnLk4vYW+8lzF4="
         }
       ]
     },

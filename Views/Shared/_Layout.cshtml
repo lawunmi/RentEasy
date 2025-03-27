@@ -46,14 +46,30 @@
                 <img src="/images/logo.png" alt="RentEasy Logo" style="height:40px;" />
                 RentEasy
             </a>
-            <ul>
-                <li class="nav-item">
-                    <a class="nav-link"  href="@Url.Action("Login", "Account")" >Login</a>
-                </li>
+            <ul class="navbar-nav ml-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Dashboard")">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" action="@Url.Action("Logout", "Account")" class="form-inline">
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Login", "Account")">Login</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>
 
     @RenderBody()
+    @RenderSection("Scripts", required: false)
+    @RenderSection("Style", required: false)
 </body>
 </html>

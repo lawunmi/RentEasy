@@ -5,7 +5,7 @@ namespace RentEasy.Models
     public class User
     {
         [Key]
-        public int UserId { get; set; }
+        public String UserId { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
         public string Username { get; set; }

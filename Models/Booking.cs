@@ -4,7 +4,7 @@ namespace RentEasy.Models
 {
     public class Booking
     {
-        public int BookingID { get; set; }
+        public String BookingID { get; set; } = Guid.NewGuid().ToString();
         [Required]
         public int ItemId { get; set; }
 
