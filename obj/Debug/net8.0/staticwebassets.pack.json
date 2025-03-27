@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\rentease-logo.svg",
+      "PackagePath": "staticwebassets\\images\\rentease-logo.svg"
+    },
+    {
       "Id": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

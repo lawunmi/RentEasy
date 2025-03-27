@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yzHpc18foiHNX9iwmjVg/4HiPRjJPt22h/PNqnzcLd8=",
+  "Hash": "sszXJZgnUvUacU3Y00bwxv2kPdWjWJx1pX8qYCoQv7Y=",
   "Source": "RentEasy",
   "BasePath": "_content/RentEasy",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "2vwj428w01",
+      "Integrity": "HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -99,6 +99,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\logo.png",
+      "SourceId": "RentEasy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\",
+      "BasePath": "_content/RentEasy",
+      "RelativePath": "images/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j5b2jjyv3k",
+      "Integrity": "CVzgfPZJHXSzlGfHSri5309h/0AR5glq3cyVIuUAmxc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\rentease-logo.svg",
+      "SourceId": "RentEasy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\",
+      "BasePath": "_content/RentEasy",
+      "RelativePath": "images/rentease-logo#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gwoeu13e3z",
+      "Integrity": "kKdJ+wuttaEcl2dG3rqAvemEt7gHNjAZMapuj36uMWA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\rentease-logo.svg"
     },
     {
       "Identity": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\js\\site.js",
@@ -1321,7 +1363,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
+      "Route": "css/site.2vwj428w01.css",
       "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1331,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "1268"
         },
         {
           "Name": "Content-Type",
@@ -1339,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Mar 2025 14:38:58 GMT"
+          "Value": "Thu, 27 Mar 2025 05:44:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1353,7 +1395,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
+          "Value": "2vwj428w01"
         },
         {
           "Name": "label",
@@ -1361,7 +1403,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk="
         }
       ]
     },
@@ -1376,7 +1418,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "1268"
         },
         {
           "Name": "Content-Type",
@@ -1384,11 +1426,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Mar 2025 14:38:58 GMT"
+          "Value": "Thu, 27 Mar 2025 05:44:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1398,7 +1440,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-HnmOgwmbiIR2E8hKzvVG5WYshjbXsV7i/TKI0XuY5Gk="
         }
       ]
     },
@@ -1481,6 +1523,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.j5b2jjyv3k.png",
+      "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CVzgfPZJHXSzlGfHSri5309h/0AR5glq3cyVIuUAmxc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 06:17:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j5b2jjyv3k"
+        },
+        {
+          "Name": "label",
+          "Value": "images/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-CVzgfPZJHXSzlGfHSri5309h/0AR5glq3cyVIuUAmxc="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.png",
+      "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83056"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CVzgfPZJHXSzlGfHSri5309h/0AR5glq3cyVIuUAmxc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 06:17:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-CVzgfPZJHXSzlGfHSri5309h/0AR5glq3cyVIuUAmxc="
+        }
+      ]
+    },
+    {
+      "Route": "images/rentease-logo.gwoeu13e3z.svg",
+      "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\rentease-logo.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kKdJ+wuttaEcl2dG3rqAvemEt7gHNjAZMapuj36uMWA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 03:57:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gwoeu13e3z"
+        },
+        {
+          "Name": "label",
+          "Value": "images/rentease-logo.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kKdJ+wuttaEcl2dG3rqAvemEt7gHNjAZMapuj36uMWA="
+        }
+      ]
+    },
+    {
+      "Route": "images/rentease-logo.svg",
+      "AssetFile": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\wwwroot\\images\\rentease-logo.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kKdJ+wuttaEcl2dG3rqAvemEt7gHNjAZMapuj36uMWA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 03:57:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kKdJ+wuttaEcl2dG3rqAvemEt7gHNjAZMapuj36uMWA="
         }
       ]
     },
