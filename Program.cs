@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using RentEasy.Data;
 
@@ -29,6 +30,14 @@ builder.Services.AddDbContext<RentEasyContext>(options =>
 
     options.UseSqlServer(connectionString);
 });
+
+// --- Configure cookie authentication ---
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+    });
 
 var app = builder.Build();
 
