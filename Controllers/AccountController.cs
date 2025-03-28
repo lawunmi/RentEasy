@@ -69,16 +69,30 @@ namespace RentEasy.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                    new Claim(ClaimTypes.Name, user.Username)
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.Role)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToDashboard(user.Role);
             }
             ModelState.AddModelError("", "Invalid credentials.");
             return View();
+        }
+
+        public IActionResult RedirectToDashboard(String role)
+        {
+            switch (role)
+            {
+                case "owner":
+                    return RedirectToAction("Index", "OwnerDashboard");
+                case "renter":
+                    return RedirectToAction("Index", "RenterDashboard");
+                default:
+                    return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
