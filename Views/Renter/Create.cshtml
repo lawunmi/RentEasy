@@ -1,5 +1,84 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model RentEasy.Models.RenterCreateViewModel
 @{
+    ViewData["Title"] = "Add New Item";
+}
+<h2>Rent Item</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Item Selection -->
+    <div class="form-group">
+        <label for="ItemId">Select Item</label>
+        <select id="ItemId" asp-for="ItemId" class="form-control" required>
+            <option value="">-- Select an Item --</option>
+            @foreach (var item in Model.AvailableItems)
+            {
+                <option value="@item.ItemId">@item.Title</option>
+            }
+        </select>
+    </div>
+
+    <!-- Auto-Populated Fields -->
+    <div class="form-group">
+        <label asp-for="ItemTitle"></label>
+        <input asp-for="ItemTitle" id="ItemTitle" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ItemDescription"></label>
+        <input asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly />
+    </div>
+
+    <!-- Image Preview -->
+    <div class="form-group">
+        <label>Item Image</label>
+        <div id="imagePreview" class="border p-3 text-center">
+            <img id="previewImage" src="" alt="Select an item to see the image" style="max-width: 100%; height: auto; display: none;" />
+        </div>
+    </div>
+
+    <!-- Rent Dates -->
+    <div class="form-group">
+        <label asp-for="RentStartDate"></label>
+        <input asp-for="RentStartDate" type="date" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RentEndDate"></label>
+        <input asp-for="RentEndDate" type="date" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Rent Item</button>
+    <a href="@Url.Action("Index", "RenterDashboard")" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("ItemId").addEventListener("change", function () {
+            var itemId = this.value;
+            if (itemId) {
+                fetch(`/Item/GetItemDetails/${itemId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("ItemTitle").value = data.itemTitle;
+                        document.getElementById("ItemDescription").value = data.itemDescription;
+
+                        var previewImage = document.getElementById("previewImage");
+                        if (data.itemImages && data.itemImages.length > 0) {
+                            previewImage.src = data.itemImages[0]; // Show first image
+                            previewImage.style.display = "block";
+                        } else {
+                            previewImage.style.display = "none";
+                        }
+                    })
+                    .catch(error => console.error("Error fetching item details:", error));
+            } else {
+                document.getElementById("ItemTitle").value = "";
+                document.getElementById("ItemDescription").value = "";
+                document.getElementById("previewImage").style.display = "none";
+            }
+        });
+    </script>
 }
