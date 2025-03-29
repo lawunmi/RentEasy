@@ -8,7 +8,7 @@ namespace RentEasy.Models
         public String ItemId { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
-        public int OwnerId { get; set; }
+        public String OwnerId { get; set; }
 
         [Required]
         public string Title { get; set; }
