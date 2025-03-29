@@ -22,19 +22,19 @@
                 background-color: #217dbb;
                 text-decoration: none;
                 color: white;
+                padding: 2px 8px;
+                border-radius: 12px;
+                font-size: 1.2rem;
         }
+
         a{
             text-decoration:none;
         }
 
         li {
-            display: inline-block;
-            background-color: #59c3b7;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            text-decoration: none;
             list-style:none;
+            margin-left: 20px;
+            margin-right: 20px;
         }
         
     </style>
@@ -52,11 +52,11 @@
                     <li class="nav-item">
                         @if (User.IsInRole("owner"))
                         {
-                            <a class="nav-link" href="@Url.Action("Index", "OwnerDashboard")">Dashboard</a>
+                            <a class="nav-link" href="@Url.Action("Index", "OwnerDashboard")">Owner Dashboard</a>
                         }
                         else if (User.IsInRole("renter"))
                         {
-                            <a class="nav-link" href="@Url.Action("Index", "RenterDashboard")">Owner Dashboard</a>
+                            <a class="nav-link" href="@Url.Action("Index", "RenterDashboard")">Renter Dashboard</a>
                         }
                     </li>
                     <li class="nav-item">
