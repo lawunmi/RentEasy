@@ -1,1 +1,288 @@
-[]
+[
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "CreateItem",
+    "RelativePath": "API/itemlisting",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ItemId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "OwnerId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "AvailableFrom",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "AvailableTo",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PricePerDay",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "PricePerWeek",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "PricePerMonth",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "ItemImages",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "User.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "images",
+        "Type": "System.Collections.Generic.List\u00601[[Microsoft.AspNetCore.Http.IFormFile, Microsoft.AspNetCore.Http.Features, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "GetAllItems",
+    "RelativePath": "API/itemlisting",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "GetItemById",
+    "RelativePath": "API/itemlisting/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "UpdateItem",
+    "RelativePath": "API/itemlisting/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "RentEasy.Models.Itemlisting",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "DeleteItem",
+    "RelativePath": "API/itemlisting/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "GetListings",
+    "RelativePath": "API/listings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "CreateListing",
+    "RelativePath": "API/listings",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RentEasy.Models.Itemlisting",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "GetListing",
+    "RelativePath": "API/listings/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "UpdateListing",
+    "RelativePath": "API/listings/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "RentEasy.Models.Itemlisting",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "DeleteListing",
+    "RelativePath": "API/listings/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "Register",
+    "RelativePath": "API/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RentEasy.Models.RegisterViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "GetRentals",
+    "RelativePath": "API/rentals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "CreateRental",
+    "RelativePath": "API/rentals",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "RentEasy.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RentEasy.Controllers.APIController",
+    "Method": "DeleteRental",
+    "RelativePath": "API/rentals/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

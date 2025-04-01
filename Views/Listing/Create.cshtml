@@ -1,5 +1,75 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model RentEasy.Models.ItemListingCreateViewModel
 @{
+    ViewData["Title"] = "Create Item";
+}
+<h2>New Item</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<form asp-action="Create" asp-controller="Listing" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Title">Title </label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AvailableFrom">Available From </label>
+        <input asp-for="AvailableFrom" type="date" class="form-control" />
+        <span asp-validation-for="AvailableFrom" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AvailableTo">Available To </label>
+        <input asp-for="AvailableTo" type="date" class="form-control" />
+        <span asp-validation-for="AvailableTo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PricePerDay">Price Per Day </label>
+        <input asp-for="PricePerDay" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="PricePerDay" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PricePerWeek">Price Per Week</label>
+        <input asp-for="PricePerWeek" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="PricePerWeek" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PricePerMonth">Price Per Month</label>
+        <input asp-for="PricePerMonth" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="PricePerMonth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Upload Images </label>
+        <input type="file" name="images" multiple class="form-control" />
+        <small class="text-muted">At least one image is required</small>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">Create Item</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
