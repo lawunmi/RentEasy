@@ -3,10 +3,8 @@
     ViewData["Title"] = "Add New Item";
 }
 <h2>Rent Item</h2>
-
 <form asp-action="Create" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
-
     <!-- Item Selection -->
     <div class="form-group">
         <label for="ItemId">Select Item</label>
@@ -19,66 +17,95 @@
         </select>
     </div>
 
-    <!-- Auto-Populated Fields -->
+    <!-- Description Field -->
     <div class="form-group">
-        <label asp-for="ItemTitle"></label>
-        <input asp-for="ItemTitle" id="ItemTitle" class="form-control" readonly />
+        <label asp-for="ItemDescription">Description</label>
+        <textarea asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly rows="3"></textarea>
     </div>
 
+    <!-- Description Field -->
     <div class="form-group">
-        <label asp-for="ItemDescription"></label>
-        <input asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly />
+        <!--<label asp-for="ItemDescription">Description</label>
+        <textarea asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly rows="3"></textarea>-->
+        <input type="hidden" asp-for="ItemDescription" id="HiddenItemDescription" />
     </div>
+
 
     <!-- Image Preview -->
     <div class="form-group">
-        <label>Item Image</label>
-        <div id="imagePreview" class="border p-3 text-center">
-            <img id="previewImage" src="" alt="Select an item to see the image" style="max-width: 100%; height: auto; display: none;" />
+        <label>Item Images</label>
+        <div id="imageGallery" class="border p-3 text-center d-flex flex-wrap justify-content-center">
+            <p id="noImagesMessage">Select an item to see images</p>
         </div>
     </div>
 
     <!-- Rent Dates -->
     <div class="form-group">
-        <label asp-for="RentStartDate"></label>
+        <label asp-for="RentStartDate">Rent StartDate</label>
         <input asp-for="RentStartDate" type="date" class="form-control" required />
     </div>
-
     <div class="form-group">
-        <label asp-for="RentEndDate"></label>
+        <label asp-for="RentEndDate">Rent EndDate</label>
         <input asp-for="RentEndDate" type="date" class="form-control" required />
     </div>
-
     <button type="submit" class="btn btn-primary">Rent Item</button>
     <a href="@Url.Action("Index", "RenterDashboard")" class="btn btn-secondary">Cancel</a>
 </form>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        document.getElementById("ItemId").addEventListener("change", function () {
+                document.getElementById("ItemId").addEventListener("change", function () {
             var itemId = this.value;
+            var imageGallery = document.getElementById("imageGallery");
+            var noImagesMessage = document.getElementById("noImagesMessage");
+            var descriptionField = document.getElementById("ItemDescription");
+            var hiddenDescriptionField = document.getElementById("HiddenItemDescription");
+
+            // Clear previous images
+            imageGallery.innerHTML = "";
+            imageGallery.appendChild(noImagesMessage);
+
             if (itemId) {
                 fetch(`/Item/GetItemDetails/${itemId}`)
                     .then(response => response.json())
                     .then(data => {
-                        document.getElementById("ItemTitle").value = data.itemTitle;
-                        document.getElementById("ItemDescription").value = data.itemDescription;
+                        // Update both visible and hidden description fields
+                        descriptionField.value = data.itemDescription;
+                        hiddenDescriptionField.value = data.itemDescription;
 
-                        var previewImage = document.getElementById("previewImage");
+                        // Handle images
                         if (data.itemImages && data.itemImages.length > 0) {
-                            previewImage.src = data.itemImages[0]; // Show first image
-                            previewImage.style.display = "block";
+                            imageGallery.innerHTML = "";
+                            data.itemImages.forEach(imgSrc => {
+                                var imgContainer = document.createElement('div');
+                                imgContainer.className = 'm-2';
+
+                                var img = document.createElement('img');
+                                img.src = imgSrc;
+                                img.alt = "Item Image";
+                                img.style.maxWidth = "150px";
+                                img.style.maxHeight = "150px";
+                                img.style.objectFit = "contain";
+
+                                imgContainer.appendChild(img);
+                                imageGallery.appendChild(imgContainer);
+                            });
                         } else {
-                            previewImage.style.display = "none";
+                            noImagesMessage.textContent = "No images available for this item";
                         }
                     })
-                    .catch(error => console.error("Error fetching item details:", error));
+                    .catch(error => {
+                        console.error("Error fetching item details:", error);
+                        descriptionField.value = "";
+                        hiddenDescriptionField.value = "";
+                        noImagesMessage.textContent = "Error loading item details";
+                    });
             } else {
-                document.getElementById("ItemTitle").value = "";
-                document.getElementById("ItemDescription").value = "";
-                document.getElementById("previewImage").style.display = "none";
+                descriptionField.value = "";
+                hiddenDescriptionField.value = "";
+                noImagesMessage.textContent = "Select an item to see images";
             }
         });
+
     </script>
 }

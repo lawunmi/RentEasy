@@ -14,25 +14,29 @@ namespace RentEasy.Controllers
         {
             _reDbContext = reDbContext;
         }
+
         public async Task<IActionResult> Index()
         {
-            var items = await _reDbContext.ItemListing.Where(r => r.ItemId == User.Identity.Name).ToListAsync();
-            return View(items);  
+            // Get the currently logged-in user's ID
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                TempData["ErrorMessage"] = "You must be logged in to access the dashboard.";
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Fetch only items owned by the logged-in user
+            var items = await _reDbContext.ItemListing
+                                          .Where(r => r.OwnerId == userId)
+                                          .ToListAsync();
+
+            if (items == null || !items.Any())
+            {
+                TempData["InfoMessage"] = "No items found for your account.";
+            }
+
+            return View(items);
         }
-
-        //public async Task<IActionResult> Index()
-        //{
-        //    var rentals = await _reDbContext.ItemListing
-        //        .Where(r => r.ItemId == User.Identity.Name)
-        //        .ToListAsync();
-
-        //    if (rentals == null)
-        //    {
-        //        rentals = new List<ItemListing>();  // Avoid passing null to the view
-        //    }
-
-        //    return View(rentals);
-        //}
-
     }
 }

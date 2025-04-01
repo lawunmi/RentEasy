@@ -8,7 +8,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Description</th>
+            <th>Rented Item</th>
             <th>Start</th>
             <th>End</th>
             <th>Amount</th>
@@ -18,15 +18,10 @@
         @foreach (var renter in Model)
         {
             <tr>
+                <td></td>
                 <td>@renter.StartDate.ToString("g")</td>
                 <td>@renter.EndDate.ToString("g")</td>
-                <td>@renter.TotalAmount</td>
-                <td>
-                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Renter", new { id = renter.BookingID })">Edit</a>
-                    <form asp-action="Delete" method="post" style="display:inline;">
-                        <input type="hidden" name="id" value="@renter.BookingID" />
-                    </form>
-                </td>
+                <td>@($"${renter.TotalAmount} CAD")</td>
             </tr>
         }
     </tbody>
