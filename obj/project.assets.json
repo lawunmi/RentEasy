@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "AWSSDK.Core/3.7.402.29": {
+      "AWSSDK.Core/3.7.402.30": {
         "type": "package",
         "compile": {
           "lib/net8.0/AWSSDK.Core.dll": {
@@ -15,10 +15,10 @@
           }
         }
       },
-      "AWSSDK.S3/3.7.415.28": {
+      "AWSSDK.S3/3.7.416": {
         "type": "package",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.402.29, 4.0.0)"
+          "AWSSDK.Core": "[3.7.402.30, 4.0.0)"
         },
         "compile": {
           "lib/net8.0/AWSSDK.S3.dll": {
@@ -2965,15 +2965,15 @@
     }
   },
   "libraries": {
-    "AWSSDK.Core/3.7.402.29": {
-      "sha512": "cYggBAJldqvu3pQtJGLf5Ly1Rwn2tzqTNL1mMVkHry8TkwzAIwSJE3TCCXkGjWAYAajP5TYCWaF1/QkOBN87Xw==",
+    "AWSSDK.Core/3.7.402.30": {
+      "sha512": "6jhbaxkna+XLFimPPn/CyK2Us6A3UPeuvJWLignTEPinShHoyqRjQBkQ6A+Dp6MwWE2OC1UAwfFiW8Z4wpggJw==",
       "type": "package",
-      "path": "awssdk.core/3.7.402.29",
+      "path": "awssdk.core/3.7.402.30",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "awssdk.core.3.7.402.29.nupkg.sha512",
+        "awssdk.core.3.7.402.30.nupkg.sha512",
         "awssdk.core.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.Core.dll",
@@ -2994,17 +2994,17 @@
         "tools/account-management.ps1"
       ]
     },
-    "AWSSDK.S3/3.7.415.28": {
-      "sha512": "LZyHbC5lzgpWdDYkziKad+2hZU44q6HscmhqjcOW5Fom9Ngjf8Yol7YDaSyJfbNQR8iVCIgu0FdcbsOpMSnoUA==",
+    "AWSSDK.S3/3.7.416": {
+      "sha512": "YaAvqTlbta6oUT1IrAncb6D05/iv3cJu7Revb/xfVCXvMkzKtsRUrEDk7MtpOZsuLNKid0sdYmB4Y7qpccTCLw==",
       "type": "package",
-      "path": "awssdk.s3/3.7.415.28",
+      "path": "awssdk.s3/3.7.416",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
         "analyzers/dotnet/cs/SharedAnalysisCode.dll",
-        "awssdk.s3.3.7.415.28.nupkg.sha512",
+        "awssdk.s3.3.7.416.nupkg.sha512",
         "awssdk.s3.nuspec",
         "images/AWSLogo.png",
         "lib/net35/AWSSDK.S3.dll",
@@ -9504,7 +9504,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "AWSSDK.S3 >= 3.7.415.28",
+      "AWSSDK.S3 >= 3.7.416",
       "DotNetEnv >= 3.1.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
@@ -9512,24 +9512,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MirahO\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Shihab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\RentEasy.csproj",
+      "projectUniqueName": "C:\\Random\\SHIHAB - PC\\Centennial\\Fourth Semester - Winter 2025\\API engineering\\Group Project\\RentEasy\\RentEasy.csproj",
       "projectName": "RentEasy",
-      "projectPath": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\RentEasy.csproj",
-      "packagesPath": "C:\\Users\\MirahO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MirahO\\Downloads\\SET\\S4\\APIEngineering-306\\Project\\RentEasy\\obj\\",
+      "projectPath": "C:\\Random\\SHIHAB - PC\\Centennial\\Fourth Semester - Winter 2025\\API engineering\\Group Project\\RentEasy\\RentEasy.csproj",
+      "packagesPath": "C:\\Users\\Shihab\\.nuget\\packages\\",
+      "outputPath": "C:\\Random\\SHIHAB - PC\\Centennial\\Fourth Semester - Winter 2025\\API engineering\\Group Project\\RentEasy\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\MirahO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Shihab\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9537,6 +9532,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9554,8 +9550,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -9563,7 +9558,7 @@
         "dependencies": {
           "AWSSDK.S3": {
             "target": "Package",
-            "version": "[3.7.415.28, )"
+            "version": "[3.7.416, )"
           },
           "DotNetEnv": {
             "target": "Package",
@@ -9603,7 +9598,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.103/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "RentEasy/1.0.0": {
         "dependencies": {
-          "AWSSDK.S3": "3.7.415.28",
+          "AWSSDK.S3": "3.7.416",
           "DotNetEnv": "3.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.3",
@@ -18,22 +18,22 @@
           "RentEasy.dll": {}
         }
       },
-      "AWSSDK.Core/3.7.402.29": {
+      "AWSSDK.Core/3.7.402.30": {
         "runtime": {
           "lib/net8.0/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.402.29"
+            "fileVersion": "3.7.402.30"
           }
         }
       },
-      "AWSSDK.S3/3.7.415.28": {
+      "AWSSDK.S3/3.7.416": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.402.29"
+          "AWSSDK.Core": "3.7.402.30"
         },
         "runtime": {
           "lib/net8.0/AWSSDK.S3.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.415.28"
+            "fileVersion": "3.7.416.0"
           }
         }
       },
@@ -1777,19 +1777,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AWSSDK.Core/3.7.402.29": {
+    "AWSSDK.Core/3.7.402.30": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cYggBAJldqvu3pQtJGLf5Ly1Rwn2tzqTNL1mMVkHry8TkwzAIwSJE3TCCXkGjWAYAajP5TYCWaF1/QkOBN87Xw==",
-      "path": "awssdk.core/3.7.402.29",
-      "hashPath": "awssdk.core.3.7.402.29.nupkg.sha512"
+      "sha512": "sha512-6jhbaxkna+XLFimPPn/CyK2Us6A3UPeuvJWLignTEPinShHoyqRjQBkQ6A+Dp6MwWE2OC1UAwfFiW8Z4wpggJw==",
+      "path": "awssdk.core/3.7.402.30",
+      "hashPath": "awssdk.core.3.7.402.30.nupkg.sha512"
     },
-    "AWSSDK.S3/3.7.415.28": {
+    "AWSSDK.S3/3.7.416": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LZyHbC5lzgpWdDYkziKad+2hZU44q6HscmhqjcOW5Fom9Ngjf8Yol7YDaSyJfbNQR8iVCIgu0FdcbsOpMSnoUA==",
-      "path": "awssdk.s3/3.7.415.28",
-      "hashPath": "awssdk.s3.3.7.415.28.nupkg.sha512"
+      "sha512": "sha512-YaAvqTlbta6oUT1IrAncb6D05/iv3cJu7Revb/xfVCXvMkzKtsRUrEDk7MtpOZsuLNKid0sdYmB4Y7qpccTCLw==",
+      "path": "awssdk.s3/3.7.416",
+      "hashPath": "awssdk.s3.3.7.416.nupkg.sha512"
     },
     "Azure.Core/1.38.0": {
       "type": "package",

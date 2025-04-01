@@ -1,42 +1,251 @@
 ﻿@model IEnumerable<RentEasy.Models.Itemlisting>
 @{
-    ViewData["Title"] = "OwnerDashboard";
+    ViewData["Title"] = "Owner Dashboard";
 }
-<h2>Item Listing</h2>
-<a class="btn btn-success mb-3" href="@Url.Action("Create", "Listing")">Add New Items</a>
-@if (Model != null && Model.Any())
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price PerDay</th>
-                <th>Available From</th>
-                <th>Available To</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@item.PricePerDay</td>
-                    <td>@item.AvailableFrom.ToString("g")</td>
-                    <td>@item.AvailableTo.ToString("g")</td>
-                    <td>
-                        <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Listing", new { id = item.ItemId })">Edit</a>
-                        <form asp-action="Delete" method="post" style="display:inline;">
-                            <input type="hidden" name="id" value="@item.ItemId" />
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 
+<div class="dashboard-container">
+    <div class="dashboard-card">
+        <div class="dashboard-header">
+            <h2 class="dashboard-title">Your Item Listings</h2>
+            <p class="dashboard-subtitle">Manage your rental items below</p>
+        </div>
 
+        <div class="action-bar">
+            <a class="btn btn-success btn-lg" href="@Url.Action("Create", "Listing")">
+                <i class="fas fa-plus"></i> Add New Item
+            </a>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Images</th> <!-- New column for images -->
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price/Day</th>
+                            <th scope="col">Available From</th>
+                            <th scope="col">Available To</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="image-cell">
+                                    @if (item.ItemImages != null && item.ItemImages.Any())
+                                    {
+                                        <div class="image-gallery">
+                                            @foreach (var imageUrl in item.ItemImages.Take(2))
+                                            {
+                                                <img src="@imageUrl" alt="@item.Title" class="item-thumbnail" 
+                                                     onerror="this.src='/images/fallback.jpg';" />
+                                            }
+                                            @if (item.ItemImages.Count > 2)
+                                            {
+                                                <span class="more-images">+@(item.ItemImages.Count - 2)</span>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No images</span>
+                                    }
+                                </td>
+                                <td>@item.Title</td>
+                                <td class="description-cell">@item.Description</td>
+                                <td>$@item.PricePerDay.ToString("F2")</td>
+                                <td>@item.AvailableFrom.ToString("MMM dd, yyyy")</td>
+                                <td>@item.AvailableTo.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Listing", new { id = item.ItemId })">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <form asp-action="Delete" method="post" class="d-inline">
+                                        <input type="hidden" name="id" value="@item.ItemId" />
+                                        <button type="submit" class="btn btn-danger btn-sm" 
+                                                onclick="return confirm('Are you sure you want to delete this item?');">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-box-open fa-3x text-muted"></i>
+                <p class="text-muted mt-3">No items listed yet. Start by adding a new item!</p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .dashboard-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem 0;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            color: #2c3e50;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .dashboard-subtitle {
+            color: #7f8c8d;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+        }
+
+        .action-bar {
+            margin-bottom: 2rem;
+            text-align: right;
+        }
+
+        .btn-success {
+            background: #28a745;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .table-responsive {
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .table {
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .thead-dark {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .thead-dark th {
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f8f9fa;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        td, th {
+            padding: 15px;
+            vertical-align: middle;
+        }
+
+        .description-cell {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .image-cell {
+            max-width: 150px;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .item-thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .more-images {
+            font-size: 0.9rem;
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            border: none;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            color: #212529;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .empty-state i {
+            margin-bottom: 1rem;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 }

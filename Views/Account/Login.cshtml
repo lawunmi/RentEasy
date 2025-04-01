@@ -1,34 +1,180 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
-<h2>Login</h2>
-<form asp-action="Login" method="post">
-    <!-- Display validation errors -->
-    <div asp-validation-summary="All" class="text-danger"></div>
 
-    <div class="form-group">
-        <label for="identifier">Username</label>
-        <input type="text" name="identifier" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <div class="input-group">
-            <input type="password" name="password" class="form-control" id="password" required />
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <input type="checkbox" onclick="togglePassword()" />
-                </span>
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-subtitle">Please enter your credentials to login</p>
+
+        <form asp-action="Login" method="post" class="login-form">
+            <!-- Validation Summary -->
+            <div asp-validation-summary="All" class="alert alert-danger" role="alert"
+                 style="display: @(ViewData.ModelState.IsValid ? "none" : "block")"></div>
+
+            <!-- Username Field -->
+            <div class="form-group mb-4">
+                <label for="identifier" class="form-label">Username</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text"
+                           name="identifier"
+                           class="form-control form-control-lg"
+                           id="identifier"
+                           placeholder="Enter username"
+                           required />
+                </div>
             </div>
+
+            <!-- Password Field -->
+            <div class="form-group mb-4">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password"
+                           name="password"
+                           class="form-control form-control-lg"
+                           id="password"
+                           placeholder="Enter password"
+                           required />
+                    <span class="input-group-text toggle-password"
+                          onclick="togglePassword()">
+                        <i class="fas fa-eye" id="toggleIcon"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">
+                Sign In
+            </button>
+        </form>
+
+        <!-- Additional Links -->
+        <div class="additional-links">
+            <a href="#" class="text-muted">Forgot Password?</a>
+            <a href="#" class="text-muted">Create Account</a>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+</div>
+
+@section Styles {
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .login-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-title {
+            color: #2c3e50;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #95a5a6;
+        }
+
+        .form-control {
+            padding-left: 40px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            height: 48px;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+            .btn-primary:hover {
+                background: #0056b3;
+                transform: translateY(-2px);
+            }
+
+        .additional-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .additional-links a {
+                font-size: 0.9rem;
+                text-decoration: none;
+            }
+
+                .additional-links a:hover {
+                    color: #007bff;
+                    text-decoration: underline;
+                }
+    </style>
+}
 
 @section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <script>
         function togglePassword() {
-            var x = document.getElementById("password");
-            x.type = x.type === "password" ? "text" : "password";
+            var password = document.getElementById("password");
+            var toggleIcon = document.getElementById("toggleIcon");
+            if (password.type === "password") {
+                password.type = "text";
+                toggleIcon.classList.remove("fa-eye");
+                toggleIcon.classList.add("fa-eye-slash");
+            } else {
+                password.type = "password";
+                toggleIcon.classList.remove("fa-eye-slash");
+                toggleIcon.classList.add("fa-eye");
+            }
         }
     </script>
 }

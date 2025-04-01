@@ -2,16 +2,105 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="hero-section text-center text-white d-flex align-items-center">
+<div class="hero-section">
+    <div class="overlay"></div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h1 class="display-4 mb-4">Rent Everything You Need, When You Need It</h1>
-                <p class="lead mb-5">Discover a smarter way to rent furniture, appliances, and more - save money, reduce waste, and enjoy flexibility.</p>
-                <div class="d-flex justify-content-center">
-                    <a href="@Url.Action("Register", "Account")" class="get-started">Get Started</a>
+        <div class="content-wrapper">
+            <div class="hero-content text-center text-white">
+                <h1 class="hero-title mb-4">Rent Everything You Need, When You Need It</h1>
+                <p class="hero-subtitle mb-5">Discover a smarter way to rent furniture, appliances, and more - save money, reduce waste, and enjoy flexibility.</p>
+                <div class="button-container">
+                    <a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg get-started">Get Started</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Styles {
+    <style>
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem); /* Responsive font size */
+            font-weight: 300;
+            color: #fff;
+            margin: 0 auto 2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-weight: 600;
+            font-size: clamp(1rem, 1.5vw, 1.1rem); /* Responsive font size */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+        }
+
+            .btn-primary:hover {
+                background: #0056b3;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+            }
+    </style>
+}

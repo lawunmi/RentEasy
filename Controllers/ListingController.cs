@@ -139,6 +139,22 @@ namespace RentEasy.Controllers
         }
 
         // Upload Image to AWS S3
+        //private async Task<string> UploadToS3(IFormFile file)
+        //{
+        //    string fileKey = $"items/{Guid.NewGuid()}_{file.FileName}";
+        //    using var stream = file.OpenReadStream();
+        //    var uploadRequest = new TransferUtilityUploadRequest
+        //    {
+        //        InputStream = stream,
+        //        Key = fileKey,
+        //        BucketName = bucketName,
+        //        ContentType = file.ContentType
+        //    };
+        //    var transferUtility = new TransferUtility(_s3Client);
+        //    await transferUtility.UploadAsync(uploadRequest);
+        //    return $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
+        //}
+
         private async Task<string> UploadToS3(IFormFile file)
         {
             string fileKey = $"items/{Guid.NewGuid()}_{file.FileName}";
@@ -152,7 +168,13 @@ namespace RentEasy.Controllers
             };
             var transferUtility = new TransferUtility(_s3Client);
             await transferUtility.UploadAsync(uploadRequest);
-            return $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
+            var preSignedRequest = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key = fileKey,
+                Expires = DateTime.UtcNow.AddDays(7) // Valid for 7 days
+            };
+            return _s3Client.GetPreSignedURL(preSignedRequest);
         }
 
         [Authorize]
