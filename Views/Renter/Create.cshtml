@@ -2,59 +2,70 @@
 @{
     ViewData["Title"] = "Add New Item";
 }
-<h2>Rent Item</h2>
-<form asp-action="Create" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <!-- Item Selection -->
-    <div class="form-group">
-        <label for="ItemId">Select Item</label>
-        <select id="ItemId" asp-for="ItemId" class="form-control" required>
-            <option value="">-- Select an Item --</option>
-            @foreach (var item in Model.AvailableItems)
-            {
-                <option value="@item.ItemId">@item.Title</option>
-            }
-        </select>
-    </div>
 
-    <!-- Description Field -->
-    <div class="form-group">
-        <label asp-for="ItemDescription">Description</label>
-        <textarea asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly rows="3"></textarea>
-    </div>
+<div class="container mt-5">
+    <h2 class="mb-4 text-primary text-center">Rent an Item</h2>
 
-    <!-- Description Field -->
-    <div class="form-group">
-        <!--<label asp-for="ItemDescription">Description</label>
-        <textarea asp-for="ItemDescription" id="ItemDescription" class="form-control" readonly rows="3"></textarea>-->
-        <input type="hidden" asp-for="ItemDescription" id="HiddenItemDescription" />
-    </div>
+    <div class="card shadow-sm p-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
 
+            <!-- Item Selection -->
+            <div class="form-group">
+                <label for="ItemId" class="font-weight-bold">Select Item</label>
+                <select id="ItemId" asp-for="ItemId" class="form-control" required>
+                    <option value="">-- Select an Item --</option>
+                    @foreach (var item in Model.AvailableItems)
+                    {
+                        <option value="@item.ItemId">@item.Title</option>
+                    }
+                </select>
+            </div>
 
-    <!-- Image Preview -->
-    <div class="form-group">
-        <label>Item Images</label>
-        <div id="imageGallery" class="border p-3 text-center d-flex flex-wrap justify-content-center">
-            <p id="noImagesMessage">Select an item to see images</p>
-        </div>
-    </div>
+            <!-- Description Field -->
+            <div class="form-group">
+                <label asp-for="ItemDescription" class="font-weight-bold">Description</label>
+                <textarea asp-for="ItemDescription" id="ItemDescription" class="form-control bg-light" readonly rows="3"></textarea>
+                <input type="hidden" asp-for="ItemDescription" id="HiddenItemDescription" />
+            </div>
 
-    <!-- Rent Dates -->
-    <div class="form-group">
-        <label asp-for="RentStartDate">Rent StartDate</label>
-        <input asp-for="RentStartDate" type="date" class="form-control" required />
+            <!-- Image Preview -->
+            <div class="form-group">
+                <label class="font-weight-bold">Item Images</label>
+                <div id="imageGallery" class="border p-3 rounded text-center d-flex flex-wrap justify-content-center">
+                    <p id="noImagesMessage" class="text-muted">Select an item to see images</p>
+                </div>
+            </div>
+
+            <!-- Rent Dates -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RentStartDate" class="font-weight-bold">Rent Start Date</label>
+                        <input asp-for="RentStartDate" type="date" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RentEndDate" class="font-weight-bold">Rent End Date</label>
+                        <input asp-for="RentEndDate" type="date" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary btn-lg w-45">Rent Item</button>
+                <a href="@Url.Action("Index", "RenterDashboard")" class="btn btn-secondary btn-lg w-45">Cancel</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label asp-for="RentEndDate">Rent EndDate</label>
-        <input asp-for="RentEndDate" type="date" class="form-control" required />
-    </div>
-    <button type="submit" class="btn btn-primary">Rent Item</button>
-    <a href="@Url.Action("Index", "RenterDashboard")" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-                document.getElementById("ItemId").addEventListener("change", function () {
+        document.getElementById("ItemId").addEventListener("change", function () {
             var itemId = this.value;
             var imageGallery = document.getElementById("imageGallery");
             var noImagesMessage = document.getElementById("noImagesMessage");
@@ -66,12 +77,12 @@
             imageGallery.appendChild(noImagesMessage);
 
             if (itemId) {
-                fetch(`/Item/GetItemDetails/${itemId}`)
+                fetch(`/Renter/GetItemDetails?id=${itemId}`) // <-- Updated backend endpoint
                     .then(response => response.json())
                     .then(data => {
-                        // Update both visible and hidden description fields
-                        descriptionField.value = data.itemDescription;
-                        hiddenDescriptionField.value = data.itemDescription;
+                        // Update description
+                        descriptionField.value = data.itemDescription || "No description available";
+                        hiddenDescriptionField.value = data.itemDescription || "";
 
                         // Handle images
                         if (data.itemImages && data.itemImages.length > 0) {
@@ -81,8 +92,9 @@
                                 imgContainer.className = 'm-2';
 
                                 var img = document.createElement('img');
-                                img.src = imgSrc;
+                                img.src = imgSrc.startsWith("/") ? imgSrc : `/uploads/${imgSrc}`;
                                 img.alt = "Item Image";
+                                img.className = "rounded border";
                                 img.style.maxWidth = "150px";
                                 img.style.maxHeight = "150px";
                                 img.style.objectFit = "contain";
@@ -91,14 +103,14 @@
                                 imageGallery.appendChild(imgContainer);
                             });
                         } else {
-                            noImagesMessage.textContent = "No images available for this item";
+                            noImagesMessage.textContent = "No images available for this listing";
                         }
                     })
                     .catch(error => {
-                        console.error("Error fetching item details:", error);
+                        console.error("Error fetching listing details:", error);
                         descriptionField.value = "";
                         hiddenDescriptionField.value = "";
-                        noImagesMessage.textContent = "Error loading item details";
+                        noImagesMessage.textContent = "Error loading listing details";
                     });
             } else {
                 descriptionField.value = "";
@@ -106,6 +118,5 @@
                 noImagesMessage.textContent = "Select an item to see images";
             }
         });
-
     </script>
 }

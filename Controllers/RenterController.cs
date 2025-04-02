@@ -65,12 +65,12 @@ namespace RentEasy.Controllers
             }
 
             // Get logged-in user ID
-            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //if (string.IsNullOrEmpty(userId))
-            //{
-            //    TempData["ErrorMessage"] = "You must be logged in to rent an item.";
-            //    return RedirectToAction("Login", "Account");
-            //}
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                TempData["ErrorMessage"] = "You must be logged in to rent an item.";
+                return RedirectToAction("Login", "Account");
+            }
 
             // Calculate rental cost based on duration
             var days = (model.RentEndDate - model.RentStartDate).Days;
@@ -87,7 +87,7 @@ namespace RentEasy.Controllers
             var booking = new Booking
             {
                 ItemId = model.ItemId,
-                BookerId = User.FindFirst(ClaimTypes.NameIdentifier).Value,
+                BookerId = userId,
                 StartDate = model.RentStartDate,
                 EndDate = model.RentEndDate,
                 TotalAmount = totalAmount,
@@ -108,6 +108,31 @@ namespace RentEasy.Controllers
             }
 
             return RedirectToAction("Index", "RenterDashboard");
+        }
+
+        // Index Action - Show bookings with item details
+        public async Task<IActionResult> Index()
+        {
+            // Get the currently logged-in user's ID
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                TempData["ErrorMessage"] = "You must be logged in to access the dashboard.";
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Fetch bookings by the logged-in user
+            var bookings = await _reDbContext.Bookings
+                .Include(b => b.Itemlisting)  // Ensure this relationship is correct
+                .Where(b => b.BookerId == userId)
+                .ToListAsync();
+
+            if (bookings == null || !bookings.Any())
+            {
+                TempData["InfoMessage"] = "No items found for your account.";
+            }
+
+            return View(bookings);
         }
     }
 }

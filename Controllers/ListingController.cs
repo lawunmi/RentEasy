@@ -126,35 +126,17 @@ namespace RentEasy.Controllers
             }
             catch (DbUpdateException dbEx)
             {
-                // Handle database-specific errors
                 TempData["ErrorMessage"] = "Database error: " + (dbEx.InnerException?.Message ?? dbEx.Message);
                 return View(model);
             }
             catch (Exception ex)
             {
-                // Handle general errors
                 TempData["ErrorMessage"] = "Error: " + ex.Message;
                 return View(model);
             }
         }
 
         // Upload Image to AWS S3
-        //private async Task<string> UploadToS3(IFormFile file)
-        //{
-        //    string fileKey = $"items/{Guid.NewGuid()}_{file.FileName}";
-        //    using var stream = file.OpenReadStream();
-        //    var uploadRequest = new TransferUtilityUploadRequest
-        //    {
-        //        InputStream = stream,
-        //        Key = fileKey,
-        //        BucketName = bucketName,
-        //        ContentType = file.ContentType
-        //    };
-        //    var transferUtility = new TransferUtility(_s3Client);
-        //    await transferUtility.UploadAsync(uploadRequest);
-        //    return $"https://{bucketName}.s3.amazonaws.com/{fileKey}";
-        //}
-
         private async Task<string> UploadToS3(IFormFile file)
         {
             string fileKey = $"items/{Guid.NewGuid()}_{file.FileName}";
@@ -193,7 +175,7 @@ namespace RentEasy.Controllers
 
             if (item == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             var model = new ItemListingEditViewModel
@@ -242,7 +224,6 @@ namespace RentEasy.Controllers
             item.PricePerMonth = model.PricePerMonth;
 
             // Handle new image uploads (if any)
-            // Handle new image uploads (if any)
             var images = Request.Form.Files;
             if (images.Count > 0)
             {
@@ -262,8 +243,8 @@ namespace RentEasy.Controllers
             return RedirectToAction("Index", "OwnerDashboard");
         }
 
-
-        //Delete Item
+        // Delete Item (Merged Version)
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string id)
@@ -286,16 +267,29 @@ namespace RentEasy.Controllers
 
             try
             {
-                //Delete images from S3 if any exist
+                // Delete images from S3 first, collecting any errors
                 if (item.ItemImages != null && item.ItemImages.Count > 0)
                 {
+                    var s3Errors = new List<string>();
                     foreach (var imageUrl in item.ItemImages)
                     {
-                        await DeleteFromS3(imageUrl);
+                        try
+                        {
+                            await DeleteFromS3(imageUrl);
+                        }
+                        catch (Exception ex)
+                        {
+                            s3Errors.Add($"Failed to delete image {imageUrl}: {ex.Message}");
+                        }
+                    }
+                    if (s3Errors.Any())
+                    {
+                        TempData["ErrorMessage"] = "Item not deleted due to image removal issues: " + string.Join("; ", s3Errors);
+                        return RedirectToAction("Index", "OwnerDashboard");
                     }
                 }
 
-                //Remove the item from the database
+                // Proceed with database deletion only if S3 operations succeed
                 _reDbContext.ItemListing.Remove(item);
                 await _reDbContext.SaveChangesAsync();
 
@@ -303,33 +297,31 @@ namespace RentEasy.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Error deleting item: " + ex.Message;
+                TempData["ErrorMessage"] = $"Error deleting item: {ex.Message}";
             }
 
             return RedirectToAction("Index", "OwnerDashboard");
         }
 
-        //Delete Image from AWS S3
+        // Delete Image from AWS S3
         private async Task DeleteFromS3(string imageUrl)
         {
             try
             {
-                //Extract the file key from the full S3 URL
-                var fileKey = imageUrl.Replace($"https://{bucketName}.s3.amazonaws.com/", "");
-
+                var uri = new Uri(imageUrl);
+                var fileKey = uri.AbsolutePath.TrimStart('/');
                 var deleteRequest = new DeleteObjectRequest
                 {
                     BucketName = bucketName,
                     Key = fileKey
                 };
-
                 await _s3Client.DeleteObjectAsync(deleteRequest);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed to delete image from S3: {ex.Message}");
+                throw; // Re-throw to catch in the Delete method
             }
         }
-
     }
 }

@@ -5,6 +5,7 @@
 }
 <h2>Your Dashboard</h2>
 <a class="btn btn-success mb-3" href="@Url.Action("Create", "Renter")">Add New Items</a>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,13 +16,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var renter in Model)
+        @foreach (var booking in Model)
         {
             <tr>
-                <td></td>
-                <td>@renter.StartDate.ToString("g")</td>
-                <td>@renter.EndDate.ToString("g")</td>
-                <td>@($"${renter.TotalAmount} CAD")</td>
+                <!-- Null-safe check for Itemlisting -->
+                <td>@(booking.Itemlisting?.Title ?? "Item not found")</td>
+                <td>@booking.StartDate.ToString("MMM dd, yyyy HH:mm")</td>
+                <td>@booking.EndDate.ToString("MMM dd, yyyy HH:mm")</td>
+                <td>@($"${booking.TotalAmount:0.00} CAD")</td>
             </tr>
         }
     </tbody>

@@ -1,57 +1,230 @@
 ﻿@model RentEasy.Models.ItemListingEditViewModel
+@{
+    ViewData["Title"] = "Edit Item";
+}
 
-<h2>Edit Item</h2>
+<div class="edit-item-container">
+    <div class="edit-item-card">
+        <h2 class="edit-item-title">Edit Your Item</h2>
+        <p class="edit-item-subtitle">Update the details of your item below</p>
 
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="ItemId" />
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="edit-item-form">
+            <input type="hidden" asp-for="ItemId" />
 
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" required />
+            <!-- Validation Summary -->
+            <div asp-validation-summary="All" class="alert alert-danger" role="alert"
+                 style="display: @(ViewData.ModelState.IsValid ? "none" : "block")"></div>
+
+            <!-- Title -->
+            <div class="form-group mb-4">
+                <label asp-for="Title" class="form-label"></label>
+                <div class="input-wrapper">
+                    <i class="fas fa-tag input-icon"></i>
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter item title" required />
+                </div>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group mb-4">
+                <label asp-for="Description" class="form-label"></label>
+                <div class="input-wrapper">
+                    <i class="fas fa-align-left input-icon textarea-icon"></i>
+                    <textarea asp-for="Description" class="form-control form-control-lg" rows="4" placeholder="Describe your item..."></textarea>
+                </div>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Availability Dates -->
+            <div class="form-row mb-4">
+                <div class="form-col">
+                    <label asp-for="AvailableFrom" class="form-label"></label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-calendar input-icon"></i>
+                        <input asp-for="AvailableFrom" type="date" class="form-control form-control-lg" required />
+                    </div>
+                    <span asp-validation-for="AvailableFrom" class="text-danger"></span>
+                </div>
+                <div class="form-col">
+                    <label asp-for="AvailableTo" class="form-label"></label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-calendar input-icon"></i>
+                        <input asp-for="AvailableTo" type="date" class="form-control form-control-lg" required />
+                    </div>
+                    <span asp-validation-for="AvailableTo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="form-row mb-4">
+                <div class="form-col">
+                    <label asp-for="PricePerDay" class="form-label"></label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-dollar-sign input-icon"></i>
+                        <input asp-for="PricePerDay" type="number" step="0.01" class="form-control form-control-lg" placeholder="Per Day" required />
+                    </div>
+                    <span asp-validation-for="PricePerDay" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Existing Images -->
+            <div class="form-group mb-4">
+                <label class="form-label">Existing Images</label>
+                <div class="existing-images">
+                    @if (Model.ExistingImages != null && Model.ExistingImages.Count > 0)
+                    {
+                        @foreach (var img in Model.ExistingImages)
+                        {
+                            <img src="@img" alt="Item Image" class="m-2" style="max-width: 100px; max-height: 100px; object-fit: contain;" />
+                        }
+                    }
+                    else
+                    {
+                        <p>No images uploaded.</p>
+                    }
+                </div>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group mb-4">
+                <label class="form-label">Upload New Images (optional)</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-camera input-icon"></i>
+                    <input type="file" name="images" class="form-control form-control-lg" multiple />
+                </div>
+                <small class="text-muted d-block mt-1">You can upload multiple images.</small>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Save Changes</button>
+                <a asp-action="Index" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
+@section Styles {
+    <style>
+        .edit-item-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem 0;
+        }
 
-    <div class="form-group">
-        <label asp-for="AvailableFrom"></label>
-        <input asp-for="AvailableFrom" type="date" class="form-control" required />
-    </div>
+        .edit-item-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+        }
 
-    <div class="form-group">
-        <label asp-for="AvailableTo"></label>
-        <input asp-for="AvailableTo" type="date" class="form-control" required />
-    </div>
+        .edit-item-title {
+            color: #2c3e50;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
 
-    <div class="form-group">
-        <label asp-for="PricePerDay"></label>
-        <input asp-for="PricePerDay" type="number" step="0.01" class="form-control" required />
-    </div>
+        .edit-item-subtitle {
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    <div class="form-group">
-        <label>Existing Images</label>
-        <div>
-            @if (Model.ExistingImages != null && Model.ExistingImages.Count > 0)
-            {
-                @foreach (var img in Model.ExistingImages)
-                {
-                    <img src="@img" alt="Item Image" class="m-2" style="max-width: 100px; max-height: 100px; object-fit: contain;" />
-                }
+        .form-group {
+            position: relative;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #95a5a6;
+        }
+
+        .textarea-icon {
+            top: 20px;
+            transform: none;
+        }
+
+        .form-control {
+            padding-left: 40px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            height: 48px;
+            width: 100%;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
             }
-            else
-            {
-                <p>No images uploaded.</p>
+
+        textarea.form-control {
+            height: auto;
+            padding-top: 15px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+            .btn-primary:hover {
+                background: #0056b3;
+                transform: translateY(-2px);
             }
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label>Upload New Images (optional)</label>
-        <input type="file" name="images" class="form-control" multiple />
-    </div>
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-</form>
+            .btn-secondary:hover {
+                background: #5a6268;
+                transform: translateY(-2px);
+            }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-col {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .existing-images img {
+            margin: 5px;
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: contain;
+        }
+    </style>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+}

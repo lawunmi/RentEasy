@@ -64,9 +64,10 @@
                                     <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Listing", new { id = item.ItemId })">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <form asp-action="Delete" method="post" class="d-inline">
+                                    <form asp-action="Delete" asp-controller="Listing" method="post" class="d-inline">
                                         <input type="hidden" name="id" value="@item.ItemId" />
-                                        <button type="submit" class="btn btn-danger btn-sm" 
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Are you sure you want to delete this item?');">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>

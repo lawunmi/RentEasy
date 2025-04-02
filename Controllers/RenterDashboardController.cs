@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using RentEasy.Data;
 using System.Security.Claims;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RentEasy.Controllers
 {
@@ -13,8 +15,10 @@ namespace RentEasy.Controllers
         {
             _reDbContext = reDbContext;
         }
+
         public async Task<IActionResult> Index()
-        {// Get the currently logged-in user's ID
+        {
+            // Get the currently logged-in user's ID
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
@@ -24,17 +28,17 @@ namespace RentEasy.Controllers
             }
 
             // Fetch only rented-items owned by the logged-in user
-            var renter = await _reDbContext.Bookings
-                                          .Where(r => r.BookerId == userId)
-                                          .ToListAsync();
+            var renterBookings = await _reDbContext.Bookings
+                .Include(b => b.Itemlisting)  // Ensure this relationship is properly set up
+                .Where(b => b.BookerId == userId)
+                .ToListAsync();
 
-            if (renter == null || !renter.Any())
+            if (renterBookings == null || !renterBookings.Any())
             {
                 TempData["InfoMessage"] = "No items found for your account.";
             }
 
-            return View(renter);
+            return View(renterBookings);
         }
-    
     }
 }
